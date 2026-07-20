@@ -61,6 +61,18 @@ const BEND_AXIS = new THREE.Vector3(0, 0, 1)
 const THUMB_BEND_AXIS = new THREE.Vector3(0, 0.35, 1).normalize()
 const CHILD_AXIS = new THREE.Vector3(0, 1, 0) // every bone's child is along +Y
 
+// Finger abduction (fanning). Bones extend along local +Y and flex about
+// local +Z, so the palm normal — the axis fingers fan around — is local +X.
+// Per-finger direction: index fans toward the thumb side, pinky away.
+const SPREAD_AXIS = new THREE.Vector3(1, 0, 0)
+const SPREAD_DIR: Record<FingerName, number> = { thumb: 0, index: 1, middle: 0.35, ring: -0.35, pinky: -1 }
+const SPREAD_GAIN = 0.3 // radians at spread = 1
+// Thumb lateral position (thumbSide -1 tucked across the palm .. +1 abducted
+// out as in "L"/"Y"), applied at the thumb's proximal bone about the palm
+// normal so it swings across / away from the palm plane.
+const THUMB_SIDE_AXIS = new THREE.Vector3(1, 0, 0)
+const THUMB_SIDE_GAIN = 0.55
+
 // The old procedural avatar placed its shoulder line at local Y = 1.4 inside
 // the stage group; the camera framing was tuned around that. SIZE shrinks the
 // whole figure (and, below, the pose targets with it) relative to that
@@ -114,6 +126,9 @@ const _aimQ = new THREE.Quaternion()
   const _twistQ = new THREE.Quaternion()
   const _handWorldQ = new THREE.Quaternion()
   const _faxis = new THREE.Vector3()
+  const _spreadQ = new THREE.Quaternion()
+  const _wristEuler = new THREE.Euler()
+  const _wristQ = new THREE.Quaternion()
 
 function findBone(root: THREE.Object3D, name: string): THREE.Bone | null {
   let hit: THREE.Bone | null = null
@@ -212,9 +227,60 @@ function applyFingers(rig: ArmRig, shape: HandShape) {
       const angle = CURL_SIGN * sideSign * curl * (gain[i] ?? 1)
       _curlQ.setFromAxisAngle(axis, angle)
       _outQ.copy(rest).multiply(_curlQ)
+      if (i === 0) {
+        if (!isThumb) {
+          // Fan the fingers apart at the knuckle (abduction).
+          const spreadAngle = SPREAD_DIR[finger] * (shape.spread ?? 0) * SPREAD_GAIN * sideSign
+          if (spreadAngle) {
+            _spreadQ.setFromAxisAngle(SPREAD_AXIS, spreadAngle)
+            _outQ.multiply(_spreadQ)
+          }
+        } else {
+          // Swing the thumb across the palm (-1) or out to the side (+1).
+          const sideAngle = (shape.thumbSide ?? 0) * THUMB_SIDE_GAIN * sideSign
+          if (sideAngle) {
+            _spreadQ.setFromAxisAngle(THUMB_SIDE_AXIS, sideAngle)
+            _outQ.multiply(_spreadQ)
+          }
+        }
+      }
       bone.quaternion.copy(_outQ)
     }
   }
+}
+
+const DEG = Math.PI / 180
+
+/**
+ * Apply the pose's abstract wrist rotation [pitch, yaw, roll] (degrees) to the
+ * hand bone. The angles were authored against a neutral "palm forward,
+ * fingers up" hand, so they are applied as WORLD-axis rotations premultiplied
+ * onto the hand's current world orientation:
+ *   pitch (x): tips the fingers forward/down (e.g. P, Q point down)
+ *   yaw   (y): turns the palm left/right
+ *   roll  (z): tilts the hand sideways (e.g. G, H point across the body)
+ * `weight` fades the rotation out as the arm blends into rest.
+ */
+function applyWristRotation(rig: ArmRig, wrist: [number, number, number] | undefined, weight: number) {
+  if (!wrist || weight <= 0) return
+  const side = rig.poseKey === "left" ? -1 : 1
+  const p = wrist[0] * DEG * weight
+  const yw = wrist[1] * DEG * side * weight
+  const r = wrist[2] * DEG * side * weight
+  if (!p && !yw && !r) return
+  _wristEuler.set(p, yw, r, "XYZ")
+  _wristQ.setFromEuler(_wristEuler)
+  rig.hand.getWorldQuaternion(_handWorldQ)
+  _handWorldQ.premultiply(_wristQ)
+  const parent = rig.hand.parent
+  if (parent) {
+    parent.getWorldQuaternion(_pWorldQ)
+    _invPQ.copy(_pWorldQ).invert()
+    rig.hand.quaternion.copy(_invPQ).multiply(_handWorldQ)
+  } else {
+    rig.hand.quaternion.copy(_handWorldQ)
+  }
+  rig.hand.updateWorldMatrix(false, false)
 }
 
 export function FBXSigner({
@@ -414,6 +480,8 @@ export function FBXSigner({
       }
 
       solveArm(rig, _target, t)
+      // Wrist orientation from the sign data (fades out as the arm rests).
+      applyWristRotation(rig, hand.shape.wrist, 1 - t)
       applyFingers(rig, hand.shape)
     }
   })
