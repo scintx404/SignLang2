@@ -12,7 +12,7 @@ export function TopBar({ state, knownCount }: { state: SessionState; knownCount:
           <BrandMark className="size-[22px]" />
         </div>
         <div>
-          <div className="font-display text-[1.32rem] font-bold leading-none tracking-[-0.03em]">Fluent</div>
+          <div className="font-display text-[1.32rem] font-bold leading-none tracking-[-0.03em]">SignFlow</div>
           <div className="mt-0.5 text-[0.78rem] text-ink-faint">Real-time sign &harr; speech interpreter</div>
         </div>
       </div>
