@@ -16,9 +16,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Fluent — Live Sign Language Translation",
+  title: "SignFlow — Real-Time Sign Language Translator",
   description:
-    "Real-time sign ↔ speech interpreter. Translate ASL to spoken English and speech back into signs, with on-device hand tracking — video never leaves the browser.",
+    "SignFlow is a real-time sign ↔ speech interpreter. Translate speech to signs and signs back to speech with on-device hand tracking — your video never leaves the browser.",
   generator: "v0.app",
 }
 

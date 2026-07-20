@@ -21,7 +21,7 @@ export function StreamPanel({ live, glossRow, transcript, onSpeak }: StreamPanel
   const hasLive = live.text.length > 0 || live.cursor
 
   return (
-    <aside className="shadow-soft flex min-h-[520px] flex-col overflow-hidden rounded-lg border border-line bg-surface">
+    <aside className="shadow-soft flex h-[min(78vh,720px)] min-h-[520px] flex-col overflow-hidden rounded-lg border border-line bg-surface lg:sticky lg:top-[22px]">
       <div className="flex items-center justify-between gap-3 border-b border-line-soft px-5 pb-4 pt-[18px]">
         <h2 className="text-[1.02rem] tracking-[-0.01em]">Translation</h2>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-coral-wash px-[11px] py-1.5 text-[0.72rem] font-semibold tracking-[0.03em] text-coral-deep">
@@ -31,7 +31,7 @@ export function StreamPanel({ live, glossRow, transcript, onSpeak }: StreamPanel
       </div>
 
       {/* live caption */}
-      <div className="flex min-h-[118px] flex-col justify-center border-b border-line-soft bg-surface-2 px-5 py-[22px]">
+      <div className="flex min-h-[118px] flex-none flex-col justify-center border-b border-line-soft bg-surface-2 px-5 py-[22px]">
         <div className="mb-2 flex items-center gap-[7px] text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-faint">
           <span className="rounded-[5px] bg-coral-wash px-[7px] py-0.5 tracking-[0.05em] text-coral-deep">Signing</span>
           <span>on stage now</span>
@@ -67,7 +67,7 @@ export function StreamPanel({ live, glossRow, transcript, onSpeak }: StreamPanel
       </div>
 
       {/* transcript */}
-      <div ref={scrollRef} className="transcript-scroll flex flex-1 flex-col gap-0.5 overflow-y-auto px-5 pb-5 pt-2">
+      <div ref={scrollRef} className="transcript-scroll flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto px-5 pb-5 pt-2">
         {transcript.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-2.5 p-[30px] text-center text-ink-faint">
             <ChatIcon className="size-[30px] opacity-50" />

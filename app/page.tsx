@@ -1,5 +1,5 @@
-import { FluentStudio } from "@/components/fluent/fluent-studio"
+import { Landing } from "@/components/fluent/landing"
 
 export default function Page() {
-  return <FluentStudio />
+  return <Landing />
 }
