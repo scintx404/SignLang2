@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`bg-paper ${bricolage.variable} ${inter.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`bg-paper ${bricolage.variable} ${inter.variable}`}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   )

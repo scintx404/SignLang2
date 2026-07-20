@@ -64,8 +64,8 @@ export function Landing() {
       </header>
 
       {/* hero */}
-      <section className="mt-[clamp(40px,7vw,84px)] grid items-center gap-[clamp(28px,5vw,56px)] lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,1fr)]">
-        <div>
+      <section className="mt-[clamp(40px,7vw,84px)]">
+        <div className="max-w-[68ch]">
           <span className="inline-flex items-center gap-2 rounded-full bg-coral-wash px-[13px] py-1.5 text-[0.75rem] font-semibold tracking-[0.03em] text-coral-deep">
             <span className="size-2 rounded-full animate-fluent-pulse bg-coral" aria-hidden="true" />
             Live in your browser
@@ -103,43 +103,6 @@ export function Landing() {
               </li>
             ))}
           </ul>
-        </div>
-
-        {/* stage preview */}
-        <div
-          className="shadow-stage relative isolate aspect-[16/13] overflow-hidden rounded-lg bg-stage"
-          style={{ background: "radial-gradient(ellipse 120% 100% at 50% 30%, oklch(30% 0.03 285), oklch(21% 0.028 285))" }}
-        >
-          <div className="absolute inset-0 flex flex-col justify-between p-4">
-            <div className="flex items-start justify-between gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[oklch(18%_0.02_285_/_0.55)] px-3 py-[7px] text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-stage-txt backdrop-blur-md">
-                <span className="size-2 rounded-full animate-fluent-pulse bg-coral" />
-                Live
-              </span>
-              <span className="rounded-lg bg-[oklch(18%_0.02_285_/_0.55)] px-2.5 py-1.5 text-[0.68rem] font-semibold tracking-[0.05em] text-stage-txt tabular-nums backdrop-blur-md">
-                English &rarr; ASL
-              </span>
-            </div>
-
-            <div className="grid place-items-center">
-              <div className="grid size-[92px] place-items-center rounded-[26px] border border-[oklch(100%_0_0_/_0.09)] bg-[oklch(100%_0_0_/_0.06)] text-white">
-                <HandIcon className="size-[46px]" />
-              </div>
-            </div>
-
-            <div className="min-w-[210px] max-w-[240px] self-start rounded-md border border-[oklch(100%_0_0_/_0.06)] bg-[oklch(18%_0.02_285_/_0.62)] p-4 backdrop-blur-lg">
-              <div className="text-[0.68rem] uppercase tracking-[0.09em] text-[oklch(72%_0.02_285)]">Now signing</div>
-              <div className="mb-2.5 mt-0.5 font-display text-2xl font-bold leading-none tracking-[-0.01em] text-white">
-                HELLO
-              </div>
-              <div className="flex items-center gap-[9px]">
-                <div className="h-[5px] flex-1 overflow-hidden rounded-full bg-[oklch(100%_0_0_/_0.14)]">
-                  <div className="h-full w-2/3 rounded-full bg-coral" />
-                </div>
-                <div className="min-w-[52px] text-right text-[0.76rem] font-semibold tabular-nums text-stage-txt">2/3</div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
