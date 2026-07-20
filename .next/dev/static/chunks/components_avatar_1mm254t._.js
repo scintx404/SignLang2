@@ -1041,11 +1041,12 @@ function solveArm(rig, target, restT = 0) {
     const a = (rig.upperLen * rig.upperLen - rig.foreLen * rig.foreLen + d * d) / (2 * d);
     const h = Math.sqrt(Math.max(0, rig.upperLen * rig.upperLen - a * a));
     _mid.copy(S).addScaledVector(_dir, a);
-    // Pole bends the elbow backward and slightly outward, which is how a human
-    // arm naturally hangs at rest (elbow behind the shoulder plane). During
-    // signing the targets are forward of the chest so the pole has less
-    // influence there and the motion reads correctly.
-    _pole.set(rig.poleSign * 0.15, -0.8, -0.6).normalize();
+    // Pole bends the elbow mostly straight down with only a hint of backward /
+    // outward lean, which is how a human arm naturally hangs at rest (elbow
+    // tucked close to the torso rather than winging out). During signing the
+    // targets are forward of the chest so the pole has less influence there and
+    // the motion reads correctly.
+    _pole.set(rig.poleSign * 0.06, -0.96, -0.32).normalize();
     _poleProj.copy(_pole).addScaledVector(_dir, -_pole.dot(_dir));
     if (_poleProj.lengthSq() < 1e-6) _poleProj.set(0, -1, 0);
     _poleProj.normalize();
@@ -1292,12 +1293,12 @@ function FBXSigner({ playerRef, url = "/models/SignerModelRigged7.fbx" }) {
                     fingers[finger] = chain;
                 }
                 const poleSign = Math.sign(sPos.x) || 1;
-                // Natural hanging-arm rest target: wrist hangs ~85% of full reach below
-                // the shoulder, nudged outward by 4% of total arm length so the IK pole
-                // has a stable lateral direction. z matches the shoulder so the arm
-                // drapes straight down without reaching forward or backward.
+                // Natural hanging-arm rest target: wrist hangs ~92% of full reach below
+                // the shoulder (nearly straight arm), pulled slightly IN toward the
+                // thigh and nudged a touch forward so the arm drapes naturally in front
+                // of the hip instead of winging out or jamming behind the body.
                 const reach = upperLen + foreLen;
-                const restWorld = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"](sPos.x + poleSign * reach * 0.04, sPos.y - reach * 0.85, sPos.z);
+                const restWorld = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector3"](sPos.x - poleSign * reach * 0.03, sPos.y - reach * 0.92, sPos.z + reach * 0.12);
                 rigs.push({
                     poseKey: arm.poseKey,
                     upper,
@@ -1349,7 +1350,7 @@ function FBXSigner({ playerRef, url = "/models/SignerModelRigged7.fbx" }) {
         object: model
     }, void 0, false, {
         fileName: "[project]/components/avatar/fbx-signer.tsx",
-        lineNumber: 489,
+        lineNumber: 490,
         columnNumber: 10
     }, this);
 }

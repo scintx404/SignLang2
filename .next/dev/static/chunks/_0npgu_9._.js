@@ -610,6 +610,8 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "use strict";
 
 __turbopack_context__.s([
+    "FINGERSPELL_POS",
+    ()=>FINGERSPELL_POS,
     "LETTER_SHAPES",
     ()=>LETTER_SHAPES,
     "REST_SHAPE",
@@ -636,21 +638,28 @@ function shape(curls, opts = {}) {
 }
 const CLOSED = 1;
 const OPEN = 0;
+const FINGERSPELL_POS = [
+    0.05,
+    0.35,
+    0.14
+];
 // The 26 ASL manual-alphabet handshapes (right hand). Motion letters J and Z
 // use multiple frames with hand-root movement; the rest are single static
 // frames. These are close approximations tuned to read clearly on the avatar.
 const LETTER_SHAPES = {
+    // Fist with the thumb resting up along the side of the index finger.
     A: shape({
-        thumb: 0.2,
+        thumb: 0.15,
         index: CLOSED,
         middle: CLOSED,
         ring: CLOSED,
         pinky: CLOSED
     }, {
-        thumbSide: 0.1
+        thumbSide: 0.15
     }),
+    // Flat hand, four fingers straight up and together, thumb folded across palm.
     B: shape({
-        thumb: 0.9,
+        thumb: 0.95,
         index: OPEN,
         middle: OPEN,
         ring: OPEN,
@@ -659,62 +668,65 @@ const LETTER_SHAPES = {
         thumbSide: -1,
         spread: 0
     }),
+    // Curved hand forming a "C": fingers and thumb make an open crescent.
     C: shape({
-        thumb: 0.5,
-        index: 0.45,
-        middle: 0.45,
-        ring: 0.45,
-        pinky: 0.45
+        thumb: 0.35,
+        index: 0.4,
+        middle: 0.4,
+        ring: 0.4,
+        pinky: 0.42
     }, {
-        thumbSide: 0.3
+        thumbSide: 0.55
     }),
     // Index points straight up; middle/ring/pinky curl so their tips meet the
     // thumb tip, forming a round "O" with the index extended above it.
     D: shape({
         thumb: 0.5,
         index: OPEN,
-        middle: 0.6,
-        ring: 0.62,
-        pinky: 0.62
+        middle: 0.68,
+        ring: 0.7,
+        pinky: 0.7
     }, {
-        thumbSide: 0.35
+        thumbSide: 0.3
     }),
     // Fingertips curl down to press against the front of the thumb, thumb
     // tucked in under the fingers.
     E: shape({
         thumb: 0.85,
-        index: 0.85,
-        middle: 0.85,
-        ring: 0.85,
-        pinky: 0.85
+        index: 0.82,
+        middle: 0.82,
+        ring: 0.82,
+        pinky: 0.82
     }, {
-        thumbSide: -0.5
+        thumbSide: -0.45
     }),
+    // Thumb and index touch in a ring; middle/ring/pinky stand straight up, fanned.
     F: shape({
-        thumb: 0.6,
-        index: 0.6,
+        thumb: 0.55,
+        index: 0.58,
         middle: OPEN,
         ring: OPEN,
         pinky: OPEN
     }, {
-        thumbSide: 0.2,
-        spread: 0.4
+        thumbSide: 0.25,
+        spread: 0.45
     }),
     // Index points to the side, thumb held parallel just below it (small gap).
     G: shape({
-        thumb: 0.3,
+        thumb: 0.2,
         index: OPEN,
         middle: CLOSED,
         ring: CLOSED,
         pinky: CLOSED
     }, {
-        thumbSide: 0.5,
+        thumbSide: 0.15,
         wrist: [
             0,
             0,
-            70
+            78
         ]
     }),
+    // Index + middle extended together and pointing sideways, thumb folded.
     H: shape({
         thumb: 0.7,
         index: OPEN,
@@ -723,12 +735,14 @@ const LETTER_SHAPES = {
         pinky: CLOSED
     }, {
         thumbSide: -0.2,
+        spread: 0,
         wrist: [
             0,
             0,
-            70
+            78
         ]
     }),
+    // Pinky straight up, everything else closed with thumb over the fingers.
     I: shape({
         thumb: 0.7,
         index: CLOSED,
@@ -741,15 +755,16 @@ const LETTER_SHAPES = {
     // Index up, middle out at an angle, thumb tucked in at the base between
     // them (pointing up toward the middle finger, not flared out to the side).
     K: shape({
-        thumb: 0.25,
+        thumb: 0.3,
         index: OPEN,
         middle: OPEN,
         ring: CLOSED,
         pinky: CLOSED
     }, {
-        thumbSide: 0.2,
+        thumbSide: 0.3,
         spread: 0.55
     }),
+    // Index straight up, thumb straight out to the side = right angle "L".
     L: shape({
         thumb: OPEN,
         index: OPEN,
@@ -759,42 +774,45 @@ const LETTER_SHAPES = {
     }, {
         thumbSide: 1
     }),
+    // Thumb tucked under three fingers (index, middle, ring) folded over it.
     M: shape({
-        thumb: 0.9,
-        index: 0.7,
-        middle: 0.7,
-        ring: 0.7,
+        thumb: 0.95,
+        index: 0.82,
+        middle: 0.82,
+        ring: 0.82,
         pinky: 0.9
     }, {
         thumbSide: -0.7
     }),
+    // Thumb tucked under two fingers (index, middle) folded over it.
     N: shape({
-        thumb: 0.9,
-        index: 0.7,
-        middle: 0.7,
-        ring: 0.9,
+        thumb: 0.95,
+        index: 0.82,
+        middle: 0.82,
+        ring: 0.95,
         pinky: 0.95
     }, {
         thumbSide: -0.7
     }),
+    // All fingertips curl to meet the thumb tip forming a round "O".
     O: shape({
-        thumb: 0.55,
-        index: 0.6,
-        middle: 0.6,
-        ring: 0.6,
-        pinky: 0.6
+        thumb: 0.6,
+        index: 0.62,
+        middle: 0.62,
+        ring: 0.62,
+        pinky: 0.62
     }, {
-        thumbSide: 0.35
+        thumbSide: 0.45
     }),
     // K shape rotated to point downward: index forward, middle down, thumb between.
     P: shape({
-        thumb: 0.2,
+        thumb: 0.3,
         index: OPEN,
         middle: OPEN,
         ring: CLOSED,
         pinky: CLOSED
     }, {
-        thumbSide: 0.2,
+        thumbSide: 0.3,
         spread: 0.55,
         wrist: [
             90,
@@ -802,20 +820,22 @@ const LETTER_SHAPES = {
             0
         ]
     }),
+    // G shape rotated to point downward.
     Q: shape({
-        thumb: 0.5,
+        thumb: 0.2,
         index: OPEN,
         middle: CLOSED,
         ring: CLOSED,
         pinky: CLOSED
     }, {
-        thumbSide: 0.3,
+        thumbSide: 0.15,
         wrist: [
             90,
             0,
             0
         ]
     }),
+    // Index and middle extended, crossed (approximated as held tightly together).
     R: shape({
         thumb: 0.7,
         index: OPEN,
@@ -826,8 +846,9 @@ const LETTER_SHAPES = {
         thumbSide: -0.2,
         spread: 0
     }),
+    // Fist with the thumb wrapped across the front of the fingers.
     S: shape({
-        thumb: 0.5,
+        thumb: 0.6,
         index: CLOSED,
         middle: CLOSED,
         ring: CLOSED,
@@ -838,13 +859,14 @@ const LETTER_SHAPES = {
     // Thumb tucked between the index and middle fingers; index curls over it.
     T: shape({
         thumb: 0.65,
-        index: 0.75,
+        index: 0.78,
         middle: CLOSED,
         ring: CLOSED,
         pinky: CLOSED
     }, {
         thumbSide: -0.3
     }),
+    // Index + middle straight up, held together, thumb over ring/pinky.
     U: shape({
         thumb: 0.8,
         index: OPEN,
@@ -855,6 +877,7 @@ const LETTER_SHAPES = {
         thumbSide: -0.3,
         spread: 0
     }),
+    // Index + middle straight up, spread apart in a "V".
     V: shape({
         thumb: 0.8,
         index: OPEN,
@@ -865,8 +888,9 @@ const LETTER_SHAPES = {
         thumbSide: -0.3,
         spread: 0.7
     }),
+    // Index + middle + ring up and spread; thumb pins the pinky down.
     W: shape({
-        thumb: 0.8,
+        thumb: 0.7,
         index: OPEN,
         middle: OPEN,
         ring: OPEN,
@@ -875,6 +899,7 @@ const LETTER_SHAPES = {
         thumbSide: -0.2,
         spread: 0.6
     }),
+    // Index crooked into a hook, everything else closed.
     X: shape({
         thumb: 0.6,
         index: 0.55,
@@ -884,6 +909,7 @@ const LETTER_SHAPES = {
     }, {
         thumbSide: -0.2
     }),
+    // Thumb and pinky extended out to the sides ("hang loose").
     Y: shape({
         thumb: OPEN,
         index: CLOSED,
@@ -895,49 +921,45 @@ const LETTER_SHAPES = {
     })
 };
 const REST_SHAPE = shape({
-    thumb: 0.2,
-    index: 0.15,
-    middle: 0.15,
-    ring: 0.2,
-    pinky: 0.25
+    thumb: 0.25,
+    index: 0.32,
+    middle: 0.34,
+    ring: 0.37,
+    pinky: 0.4
 }, {
-    spread: 0.15,
-    thumbSide: 0.2
+    spread: 0.12,
+    thumbSide: 0.15
 });
+// Offset a hand-root position by adding the fingerspell anchor.
+function fs(dx, dy, dz) {
+    return [
+        FINGERSPELL_POS[0] + dx,
+        FINGERSPELL_POS[1] + dy,
+        FINGERSPELL_POS[2] + dz
+    ];
+}
 function letterSign(letter) {
     const L = letter.toUpperCase();
     if (L === "J") {
-        // Pinky out, trace a J: down then hook to the side.
+        // Pinky out, trace a J in the air: down, then hook to the side.
         const iShape = LETTER_SHAPES.I;
         return {
             gloss: "J",
             frames: [
                 {
                     right: iShape,
-                    rightPos: [
-                        0,
-                        0.05,
-                        0
-                    ],
-                    hold: 160
+                    rightPos: fs(0, 0.05, 0),
+                    hold: 170
                 },
                 {
                     right: iShape,
-                    rightPos: [
-                        0.02,
-                        -0.12,
-                        0
-                    ],
-                    hold: 160
+                    rightPos: fs(0.02, -0.07, 0),
+                    hold: 170
                 },
                 {
                     right: iShape,
-                    rightPos: [
-                        -0.12,
-                        -0.18,
-                        0
-                    ],
-                    hold: 200
+                    rightPos: fs(-0.1, -0.12, 0),
+                    hold: 210
                 }
             ]
         };
@@ -958,39 +980,23 @@ function letterSign(letter) {
             frames: [
                 {
                     right: zShape,
-                    rightPos: [
-                        -0.1,
-                        0.1,
-                        0
-                    ],
-                    hold: 130
+                    rightPos: fs(-0.06, 0.06, 0),
+                    hold: 140
                 },
                 {
                     right: zShape,
-                    rightPos: [
-                        0.1,
-                        0.1,
-                        0
-                    ],
-                    hold: 130
+                    rightPos: fs(0.1, 0.06, 0),
+                    hold: 140
                 },
                 {
                     right: zShape,
-                    rightPos: [
-                        -0.1,
-                        -0.08,
-                        0
-                    ],
-                    hold: 130
+                    rightPos: fs(-0.06, -0.06, 0),
+                    hold: 140
                 },
                 {
                     right: zShape,
-                    rightPos: [
-                        0.1,
-                        -0.08,
-                        0
-                    ],
-                    hold: 170
+                    rightPos: fs(0.1, -0.06, 0),
+                    hold: 180
                 }
             ]
         };
@@ -1002,6 +1008,7 @@ function letterSign(letter) {
         frames: [
             {
                 right: s,
+                rightPos: FINGERSPELL_POS,
                 hold: 420
             }
         ]
@@ -1151,13 +1158,15 @@ class PosePlayer {
                 });
             }
             // Brief relaxed gap between adjacent fingerspelled letters for legibility.
+            // Keep the hand up in the fingerspelling zone (just a hair lower) so it
+            // doesn't drop back down to the hip between every letter.
             if (token.kind === "letter") {
                 timeline.push({
                     right: {
                         pos: add(ANCHOR_R, [
-                            0,
-                            -0.02,
-                            0
+                            __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sign$2f$alphabet$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FINGERSPELL_POS"][0],
+                            __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sign$2f$alphabet$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FINGERSPELL_POS"][1] - 0.03,
+                            __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sign$2f$alphabet$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FINGERSPELL_POS"][2]
                         ]),
                         shape: __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$sign$2f$alphabet$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["REST_SHAPE"]
                     },
@@ -1275,8 +1284,8 @@ function shape(curls, opts = {}) {
 const FLAT = shape({
     thumb: 0.3
 }, {
-    spread: 0.2
-}) // open flat hand ("5"/"B"-ish)
+    spread: 0.15
+}) // flat hand, fingers together
 ;
 const FIVE = shape({}, {
     spread: 1,
@@ -1300,7 +1309,8 @@ const POINT = shape({
     pinky: 1
 }, {
     thumbSide: -0.2
-});
+}) // "1" / index point
+;
 const THUMB_UP = shape({
     thumb: 0,
     index: 1,
@@ -1311,14 +1321,15 @@ const THUMB_UP = shape({
     thumbSide: 0.6
 });
 const OPEN_B = shape({
-    thumb: 0.8,
+    thumb: 0.55,
     index: 0,
     middle: 0,
     ring: 0,
     pinky: 0
 }, {
-    thumbSide: -1
-});
+    thumbSide: -0.4
+}) // flat hand, thumb in
+;
 const CLAW = shape({
     thumb: 0.4,
     index: 0.5,
@@ -1337,30 +1348,64 @@ const A_HAND = shape({
     pinky: 1
 }, {
     thumbSide: 0.15
-}) // closed fist, thumb up alongside
+}) // fist, thumb up alongside
+;
+const R_HAND = shape({
+    thumb: 0.7,
+    index: 0,
+    middle: 0,
+    ring: 1,
+    pinky: 1
+}, {
+    spread: 0,
+    thumbSide: -0.2
+}) // index+middle together
+;
+const BENT = shape({
+    thumb: 0.5,
+    index: 0.55,
+    middle: 0.55,
+    ring: 0.55,
+    pinky: 0.55
+}, {
+    spread: 0.15
+}) // bent flat hand
 ;
 // A curated set of common ASL signs approximated as keyframe sequences.
 // Movements are expressed as hand-root offsets; shapes reuse the presets above.
+// The quick-phrase signs (HELLO, THANK YOU, HOW, ARE, YOU, NICE, TO, MEET,
+// PLEASE, HELP, ME, GOOD, MORNING) are tuned to sit at their true ASL location
+// on the body — HELLO at the temple, THANK YOU / GOOD at the chin, etc.
 const WORDS = {
+    // Flat hand salute at the temple that arcs outward.
     HELLO: {
         gloss: "HELLO",
         frames: [
             {
                 right: FLAT,
                 rightPos: [
-                    0.16,
-                    0.34,
-                    0.05
+                    0.1,
+                    0.64,
+                    0.08
                 ],
-                wrist: undefined,
+                wrist: [
+                    0,
+                    0,
+                    8
+                ],
                 hold: 220
             },
             {
                 right: FLAT,
                 rightPos: [
-                    0.02,
-                    0.32,
-                    0.05
+                    0.28,
+                    0.58,
+                    0.12
+                ],
+                wrist: [
+                    0,
+                    0,
+                    -10
                 ],
                 hold: 260
             }
@@ -1372,18 +1417,28 @@ const WORDS = {
             {
                 right: FLAT,
                 rightPos: [
-                    0.16,
-                    0.34,
-                    0.05
+                    0.1,
+                    0.64,
+                    0.08
+                ],
+                wrist: [
+                    0,
+                    0,
+                    8
                 ],
                 hold: 200
             },
             {
                 right: FLAT,
                 rightPos: [
-                    0.04,
-                    0.32,
-                    0.05
+                    0.26,
+                    0.58,
+                    0.12
+                ],
+                wrist: [
+                    0,
+                    0,
+                    -10
                 ],
                 hold: 240
             }
@@ -1395,9 +1450,9 @@ const WORDS = {
             {
                 right: FIVE,
                 rightPos: [
-                    0.1,
-                    0.3,
-                    0.05
+                    0.12,
+                    0.5,
+                    0.06
                 ],
                 hold: 200
             },
@@ -1412,18 +1467,18 @@ const WORDS = {
                     spread: 0.5
                 }),
                 rightPos: [
-                    0.1,
-                    0.3,
-                    0.05
+                    0.12,
+                    0.5,
+                    0.06
                 ],
                 hold: 200
             },
             {
                 right: FIVE,
                 rightPos: [
-                    0.1,
-                    0.3,
-                    0.05
+                    0.12,
+                    0.5,
+                    0.06
                 ],
                 hold: 200
             }
@@ -1449,8 +1504,8 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.05,
-                    0.1,
-                    0.1
+                    0.28,
+                    0.14
                 ],
                 hold: 180
             },
@@ -1471,8 +1526,8 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.05,
-                    0.05,
-                    0.1
+                    0.22,
+                    0.14
                 ],
                 hold: 180
             },
@@ -1493,8 +1548,8 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.05,
-                    0.1,
-                    0.1
+                    0.28,
+                    0.14
                 ],
                 hold: 180
             }
@@ -1515,8 +1570,8 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.05,
-                    0.15,
-                    0.1
+                    0.34,
+                    0.12
                 ],
                 hold: 180
             },
@@ -1532,8 +1587,8 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.05,
-                    0.15,
-                    0.1
+                    0.34,
+                    0.12
                 ],
                 hold: 220
             }
@@ -1547,18 +1602,27 @@ const WORDS = {
                 right: FLAT,
                 rightPos: [
                     0,
-                    0.1,
+                    0.26,
                     0.12
                 ],
-                wrist: undefined,
+                wrist: [
+                    10,
+                    0,
+                    0
+                ],
                 hold: 130
             },
             {
                 right: FLAT,
                 rightPos: [
                     0.06,
-                    0.06,
+                    0.22,
                     0.12
+                ],
+                wrist: [
+                    10,
+                    0,
+                    0
                 ],
                 hold: 130
             },
@@ -1566,8 +1630,13 @@ const WORDS = {
                 right: FLAT,
                 rightPos: [
                     0,
-                    0.02,
+                    0.18,
                     0.12
+                ],
+                wrist: [
+                    10,
+                    0,
+                    0
                 ],
                 hold: 130
             },
@@ -1575,8 +1644,13 @@ const WORDS = {
                 right: FLAT,
                 rightPos: [
                     -0.06,
-                    0.06,
+                    0.22,
                     0.12
+                ],
+                wrist: [
+                    10,
+                    0,
+                    0
                 ],
                 hold: 130
             },
@@ -1584,25 +1658,31 @@ const WORDS = {
                 right: FLAT,
                 rightPos: [
                     0,
-                    0.1,
+                    0.26,
                     0.12
+                ],
+                wrist: [
+                    10,
+                    0,
+                    0
                 ],
                 hold: 150
             }
         ]
     },
+    // Flat hand: fingertips at the chin, then move down-and-forward to the listener.
     "THANK YOU": {
         gloss: "THANK-YOU",
         frames: [
             {
                 right: OPEN_B,
                 rightPos: [
-                    0,
-                    0.36,
-                    0.08
+                    0.02,
+                    0.58,
+                    0.06
                 ],
                 wrist: [
-                    40,
+                    35,
                     0,
                     0
                 ],
@@ -1611,12 +1691,12 @@ const WORDS = {
             {
                 right: OPEN_B,
                 rightPos: [
-                    0,
-                    0.24,
-                    0.18
+                    0.04,
+                    0.42,
+                    0.2
                 ],
                 wrist: [
-                    10,
+                    8,
                     0,
                     0
                 ],
@@ -1630,12 +1710,12 @@ const WORDS = {
             {
                 right: OPEN_B,
                 rightPos: [
-                    0,
-                    0.36,
-                    0.08
+                    0.02,
+                    0.58,
+                    0.06
                 ],
                 wrist: [
-                    40,
+                    35,
                     0,
                     0
                 ],
@@ -1644,12 +1724,12 @@ const WORDS = {
             {
                 right: OPEN_B,
                 rightPos: [
-                    0,
-                    0.24,
-                    0.18
+                    0.04,
+                    0.42,
+                    0.2
                 ],
                 wrist: [
-                    10,
+                    8,
                     0,
                     0
                 ],
@@ -1665,7 +1745,7 @@ const WORDS = {
                 right: A_HAND,
                 rightPos: [
                     0,
-                    0.12,
+                    0.28,
                     0.14
                 ],
                 hold: 140
@@ -1674,7 +1754,7 @@ const WORDS = {
                 right: A_HAND,
                 rightPos: [
                     0.06,
-                    0.08,
+                    0.24,
                     0.14
                 ],
                 hold: 140
@@ -1683,7 +1763,7 @@ const WORDS = {
                 right: A_HAND,
                 rightPos: [
                     0,
-                    0.04,
+                    0.2,
                     0.14
                 ],
                 hold: 140
@@ -1692,7 +1772,7 @@ const WORDS = {
                 right: A_HAND,
                 rightPos: [
                     -0.06,
-                    0.08,
+                    0.24,
                     0.14
                 ],
                 hold: 140
@@ -1701,7 +1781,7 @@ const WORDS = {
                 right: A_HAND,
                 rightPos: [
                     0,
-                    0.12,
+                    0.28,
                     0.14
                 ],
                 hold: 160
@@ -1716,16 +1796,15 @@ const WORDS = {
                 right: FIST,
                 rightPos: [
                     -0.04,
-                    0.12,
+                    0.26,
                     0.12
                 ],
                 left: FIST,
                 leftPos: [
                     0.04,
-                    0.12,
+                    0.26,
                     0.12
                 ],
-                wrist: undefined,
                 hold: 420
             }
         ]
@@ -1738,30 +1817,34 @@ const WORDS = {
                 right: THUMB_UP,
                 rightPos: [
                     0,
-                    0.05,
-                    0.14
+                    0.16,
+                    0.16
                 ],
                 left: OPEN_B,
                 leftPos: [
                     0,
-                    -0.02,
-                    0.16
+                    0.08,
+                    0.18
                 ],
-                wrist: undefined,
+                wrist: [
+                    0,
+                    0,
+                    0
+                ],
                 hold: 220
             },
             {
                 right: THUMB_UP,
                 rightPos: [
                     0,
-                    0.16,
-                    0.14
+                    0.3,
+                    0.16
                 ],
                 left: OPEN_B,
                 leftPos: [
                     0,
-                    0.1,
-                    0.16
+                    0.22,
+                    0.18
                 ],
                 hold: 240
             }
@@ -1772,61 +1855,38 @@ const WORDS = {
         twoHanded: true,
         frames: [
             {
-                right: shape({
-                    thumb: 0.8,
-                    index: 0,
-                    middle: 0,
-                    ring: 1,
-                    pinky: 1
-                }),
+                right: R_HAND,
                 rightPos: [
                     0.02,
-                    0.06,
-                    0.14
+                    0.24,
+                    0.16
                 ],
-                left: shape({
-                    thumb: 0.8,
-                    index: 0,
-                    middle: 0,
-                    ring: 1,
-                    pinky: 1
-                }),
+                left: R_HAND,
                 leftPos: [
                     -0.02,
-                    0.02,
-                    0.14
+                    0.2,
+                    0.16
                 ],
                 hold: 200
             },
             {
-                right: shape({
-                    thumb: 0.8,
-                    index: 0,
-                    middle: 0,
-                    ring: 1,
-                    pinky: 1
-                }),
+                right: R_HAND,
                 rightPos: [
                     -0.02,
-                    0.02,
-                    0.14
+                    0.2,
+                    0.16
                 ],
-                left: shape({
-                    thumb: 0.8,
-                    index: 0,
-                    middle: 0,
-                    ring: 1,
-                    pinky: 1
-                }),
+                left: R_HAND,
                 leftPos: [
                     0.02,
-                    0.06,
-                    0.14
+                    0.24,
+                    0.16
                 ],
                 hold: 220
             }
         ]
     },
+    // Flat hand at the chin (fingertips up), moves down and forward = "good".
     GOOD: {
         gloss: "GOOD",
         frames: [
@@ -1834,8 +1894,8 @@ const WORDS = {
                 right: OPEN_B,
                 rightPos: [
                     0,
-                    0.34,
-                    0.1
+                    0.56,
+                    0.08
                 ],
                 wrist: [
                     30,
@@ -1847,12 +1907,12 @@ const WORDS = {
             {
                 right: OPEN_B,
                 rightPos: [
-                    0,
-                    0.16,
-                    0.16
+                    0.02,
+                    0.36,
+                    0.2
                 ],
                 wrist: [
-                    0,
+                    5,
                     0,
                     0
                 ],
@@ -1867,8 +1927,8 @@ const WORDS = {
                 right: OPEN_B,
                 rightPos: [
                     0,
-                    0.34,
-                    0.1
+                    0.56,
+                    0.08
                 ],
                 wrist: [
                     30,
@@ -1881,7 +1941,7 @@ const WORDS = {
                 right: OPEN_B,
                 rightPos: [
                     0.06,
-                    0.1,
+                    0.32,
                     0.16
                 ],
                 wrist: [
@@ -1908,7 +1968,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0,
-                    0.3,
+                    0.5,
                     0.16
                 ],
                 hold: 200
@@ -1925,7 +1985,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0,
-                    0.36,
+                    0.58,
                     0.1
                 ],
                 hold: 220
@@ -1939,7 +1999,7 @@ const WORDS = {
                 right: CLAW,
                 rightPos: [
                     0.02,
-                    0.28,
+                    0.48,
                     0.14
                 ],
                 wrist: [
@@ -1953,7 +2013,7 @@ const WORDS = {
                 right: CLAW,
                 rightPos: [
                     0.04,
-                    0.34,
+                    0.56,
                     0.08
                 ],
                 wrist: [
@@ -1980,7 +2040,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.04,
-                    0.3,
+                    0.5,
                     0.14
                 ],
                 hold: 180
@@ -1997,7 +2057,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.04,
-                    0.26,
+                    0.46,
                     0.14
                 ],
                 hold: 180
@@ -2020,7 +2080,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.06,
-                    0.14,
+                    0.26,
                     0.14
                 ],
                 left: shape({
@@ -2034,7 +2094,7 @@ const WORDS = {
                 }),
                 leftPos: [
                     -0.12,
-                    0.14,
+                    0.26,
                     0.14
                 ],
                 hold: 200
@@ -2051,7 +2111,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.02,
-                    0.14,
+                    0.26,
                     0.14
                 ],
                 left: shape({
@@ -2065,7 +2125,7 @@ const WORDS = {
                 }),
                 leftPos: [
                     -0.08,
-                    0.14,
+                    0.26,
                     0.14
                 ],
                 hold: 220
@@ -2080,7 +2140,7 @@ const WORDS = {
                 right: OPEN_B,
                 rightPos: [
                     0.04,
-                    0.1,
+                    0.22,
                     0.16
                 ],
                 wrist: [
@@ -2091,7 +2151,7 @@ const WORDS = {
                 left: OPEN_B,
                 leftPos: [
                     -0.08,
-                    0.02,
+                    0.14,
                     0.16
                 ],
                 hold: 360
@@ -2106,7 +2166,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0.04,
-                    0.2,
+                    0.32,
                     0.14
                 ],
                 wrist: [
@@ -2117,7 +2177,7 @@ const WORDS = {
                 left: POINT,
                 leftPos: [
                     -0.08,
-                    0.2,
+                    0.32,
                     0.14
                 ],
                 hold: 200
@@ -2126,7 +2186,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0.1,
-                    0.1,
+                    0.22,
                     0.2
                 ],
                 wrist: [
@@ -2137,25 +2197,26 @@ const WORDS = {
                 left: POINT,
                 leftPos: [
                     -0.02,
-                    0.1,
+                    0.22,
                     0.2
                 ],
                 hold: 220
             }
         ]
     },
+    // Point the index finger out toward the listener.
     YOU: {
         gloss: "YOU",
         frames: [
             {
                 right: POINT,
                 rightPos: [
-                    0.02,
-                    0.16,
-                    0.22
+                    0.04,
+                    0.3,
+                    0.24
                 ],
                 wrist: [
-                    20,
+                    15,
                     0,
                     0
                 ],
@@ -2163,6 +2224,7 @@ const WORDS = {
             }
         ]
     },
+    // Point the index finger back at your own chest.
     ME: {
         gloss: "ME",
         frames: [
@@ -2170,11 +2232,11 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0,
-                    0.08,
-                    0.06
+                    0.24,
+                    0.05
                 ],
                 wrist: [
-                    40,
+                    35,
                     0,
                     0
                 ],
@@ -2189,15 +2251,86 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0,
-                    0.08,
-                    0.06
+                    0.24,
+                    0.05
+                ],
+                wrist: [
+                    35,
+                    0,
+                    0
+                ],
+                hold: 360
+            }
+        ]
+    },
+    // Two bent hands, palms toward you, roll up and forward.
+    HOW: {
+        gloss: "HOW",
+        twoHanded: true,
+        frames: [
+            {
+                right: BENT,
+                rightPos: [
+                    0.02,
+                    0.24,
+                    0.16
+                ],
+                left: BENT,
+                leftPos: [
+                    -0.06,
+                    0.24,
+                    0.16
                 ],
                 wrist: [
                     40,
                     0,
                     0
                 ],
-                hold: 360
+                hold: 200
+            },
+            {
+                right: BENT,
+                rightPos: [
+                    0.02,
+                    0.28,
+                    0.13
+                ],
+                left: BENT,
+                leftPos: [
+                    -0.06,
+                    0.28,
+                    0.13
+                ],
+                wrist: [
+                    -5,
+                    0,
+                    0
+                ],
+                hold: 220
+            }
+        ]
+    },
+    // Lexicalized "ARE": R handshape moves forward from near the lips.
+    ARE: {
+        gloss: "ARE",
+        frames: [
+            {
+                right: R_HAND,
+                rightPos: [
+                    0.02,
+                    0.5,
+                    0.12
+                ],
+                hold: 170
+            },
+            {
+                right: R_HAND,
+                rightPos: [
+                    0.05,
+                    0.46,
+                    0.24
+                ],
+                hold: 200
             }
         ]
     },
@@ -2209,13 +2342,13 @@ const WORDS = {
                 right: FIVE,
                 rightPos: [
                     0.06,
-                    0.12,
+                    0.24,
                     0.16
                 ],
                 left: FIVE,
                 leftPos: [
                     -0.12,
-                    0.12,
+                    0.24,
                     0.16
                 ],
                 hold: 360
@@ -2237,7 +2370,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.02,
-                    0.28,
+                    0.5,
                     0.12
                 ],
                 hold: 200
@@ -2254,7 +2387,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.02,
-                    0.28,
+                    0.5,
                     0.12
                 ],
                 hold: 200
@@ -2268,7 +2401,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     -0.06,
-                    0.24,
+                    0.44,
                     0.16
                 ],
                 wrist: [
@@ -2282,7 +2415,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0.08,
-                    0.24,
+                    0.44,
                     0.16
                 ],
                 wrist: [
@@ -2296,7 +2429,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     -0.06,
-                    0.24,
+                    0.44,
                     0.16
                 ],
                 wrist: [
@@ -2316,13 +2449,13 @@ const WORDS = {
                 right: FIVE,
                 rightPos: [
                     0.02,
-                    0.02,
+                    0.14,
                     0.16
                 ],
                 left: OPEN_B,
                 leftPos: [
                     0,
-                    -0.04,
+                    0.06,
                     0.18
                 ],
                 hold: 200
@@ -2331,13 +2464,13 @@ const WORDS = {
                 right: CLAW,
                 rightPos: [
                     0.02,
-                    0.24,
+                    0.4,
                     0.12
                 ],
                 left: OPEN_B,
                 leftPos: [
                     0,
-                    -0.04,
+                    0.06,
                     0.18
                 ],
                 hold: 240
@@ -2352,7 +2485,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0.06,
-                    0.16,
+                    0.28,
                     0.16
                 ],
                 wrist: [
@@ -2363,7 +2496,7 @@ const WORDS = {
                 left: POINT,
                 leftPos: [
                     -0.1,
-                    0.24,
+                    0.36,
                     0.16
                 ],
                 hold: 180
@@ -2372,7 +2505,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0.06,
-                    0.26,
+                    0.38,
                     0.16
                 ],
                 wrist: [
@@ -2383,7 +2516,7 @@ const WORDS = {
                 left: POINT,
                 leftPos: [
                     -0.1,
-                    0.14,
+                    0.26,
                     0.16
                 ],
                 hold: 200
@@ -2397,7 +2530,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0.06,
-                    0.32,
+                    0.56,
                     0.1
                 ],
                 wrist: [
@@ -2411,7 +2544,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0.04,
-                    0.24,
+                    0.46,
                     0.12
                 ],
                 wrist: [
@@ -2443,7 +2576,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0,
-                    0.14,
+                    0.26,
                     0.16
                 ],
                 left: shape({
@@ -2461,7 +2594,7 @@ const WORDS = {
                 }),
                 leftPos: [
                     -0.02,
-                    0.1,
+                    0.22,
                     0.16
                 ],
                 hold: 360
@@ -2483,7 +2616,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     -0.02,
-                    0.3,
+                    0.5,
                     0.14
                 ],
                 hold: 200
@@ -2500,7 +2633,7 @@ const WORDS = {
                 }),
                 rightPos: [
                     0.06,
-                    0.3,
+                    0.5,
                     0.12
                 ],
                 hold: 220
@@ -2515,7 +2648,7 @@ const WORDS = {
                 right: FIST,
                 rightPos: [
                     0.02,
-                    0.12,
+                    0.24,
                     0.16
                 ],
                 wrist: [
@@ -2526,7 +2659,7 @@ const WORDS = {
                 left: FIST,
                 leftPos: [
                     -0.02,
-                    0.06,
+                    0.18,
                     0.16
                 ],
                 hold: 180
@@ -2535,7 +2668,7 @@ const WORDS = {
                 right: FIST,
                 rightPos: [
                     0.04,
-                    0.14,
+                    0.26,
                     0.16
                 ],
                 wrist: [
@@ -2546,7 +2679,7 @@ const WORDS = {
                 left: FIST,
                 leftPos: [
                     -0.02,
-                    0.06,
+                    0.18,
                     0.16
                 ],
                 hold: 200
@@ -2561,7 +2694,7 @@ const WORDS = {
                 right: OPEN_B,
                 rightPos: [
                     -0.08,
-                    0.08,
+                    0.2,
                     0.16
                 ],
                 wrist: [
@@ -2572,7 +2705,7 @@ const WORDS = {
                 left: OPEN_B,
                 leftPos: [
                     -0.02,
-                    0.04,
+                    0.16,
                     0.18
                 ],
                 hold: 180
@@ -2581,7 +2714,7 @@ const WORDS = {
                 right: OPEN_B,
                 rightPos: [
                     0.1,
-                    0.08,
+                    0.2,
                     0.16
                 ],
                 wrist: [
@@ -2592,7 +2725,7 @@ const WORDS = {
                 left: OPEN_B,
                 leftPos: [
                     -0.02,
-                    0.04,
+                    0.16,
                     0.18
                 ],
                 hold: 220
@@ -2607,7 +2740,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0.1,
-                    0.14,
+                    0.26,
                     0.16
                 ],
                 wrist: [
@@ -2618,7 +2751,7 @@ const WORDS = {
                 left: POINT,
                 leftPos: [
                     -0.14,
-                    0.14,
+                    0.26,
                     0.16
                 ],
                 hold: 180
@@ -2627,7 +2760,7 @@ const WORDS = {
                 right: POINT,
                 rightPos: [
                     0.02,
-                    0.14,
+                    0.26,
                     0.16
                 ],
                 wrist: [
@@ -2638,10 +2771,126 @@ const WORDS = {
                 left: POINT,
                 leftPos: [
                     -0.06,
-                    0.14,
+                    0.26,
                     0.16
                 ],
                 hold: 220
+            }
+        ]
+    },
+    // Two "1" hands, fingers pointing up; tips approach and touch.
+    TO: {
+        gloss: "TO",
+        twoHanded: true,
+        frames: [
+            {
+                right: shape({
+                    thumb: 0.6,
+                    index: 0,
+                    middle: 1,
+                    ring: 1,
+                    pinky: 1
+                }, {
+                    thumbSide: -0.1
+                }),
+                rightPos: [
+                    0.1,
+                    0.28,
+                    0.18
+                ],
+                left: shape({
+                    thumb: 0.6,
+                    index: 0,
+                    middle: 1,
+                    ring: 1,
+                    pinky: 1
+                }, {
+                    thumbSide: -0.1
+                }),
+                leftPos: [
+                    -0.14,
+                    0.28,
+                    0.18
+                ],
+                hold: 180
+            },
+            {
+                right: shape({
+                    thumb: 0.6,
+                    index: 0,
+                    middle: 1,
+                    ring: 1,
+                    pinky: 1
+                }, {
+                    thumbSide: -0.1
+                }),
+                rightPos: [
+                    0.0,
+                    0.28,
+                    0.18
+                ],
+                left: shape({
+                    thumb: 0.6,
+                    index: 0,
+                    middle: 1,
+                    ring: 1,
+                    pinky: 1
+                }, {
+                    thumbSide: -0.1
+                }),
+                leftPos: [
+                    -0.04,
+                    0.28,
+                    0.18
+                ],
+                hold: 220
+            }
+        ]
+    },
+    // The flat "sun" hand rises up from behind the horizontal forearm.
+    MORNING: {
+        gloss: "MORNING",
+        twoHanded: true,
+        frames: [
+            {
+                right: FLAT,
+                rightPos: [
+                    -0.02,
+                    0.12,
+                    0.16
+                ],
+                wrist: [
+                    50,
+                    0,
+                    0
+                ],
+                left: FLAT,
+                leftPos: [
+                    -0.06,
+                    0.2,
+                    0.2
+                ],
+                hold: 200
+            },
+            {
+                right: FLAT,
+                rightPos: [
+                    0.02,
+                    0.34,
+                    0.12
+                ],
+                wrist: [
+                    10,
+                    0,
+                    0
+                ],
+                left: FLAT,
+                leftPos: [
+                    -0.06,
+                    0.2,
+                    0.2
+                ],
+                hold: 250
             }
         ]
     }

@@ -1,5 +1,5 @@
 import type { HandShape, SignToken } from "./types"
-import { REST_SHAPE } from "./alphabet"
+import { REST_SHAPE, FINGERSPELL_POS } from "./alphabet"
 
 // Absolute runtime state for one hand.
 export interface HandRuntime {
@@ -130,9 +130,14 @@ export class PosePlayer {
         timeline.push({ right, left, hold: frame.hold ?? 380, tokenIndex })
       }
       // Brief relaxed gap between adjacent fingerspelled letters for legibility.
+      // Keep the hand up in the fingerspelling zone (just a hair lower) so it
+      // doesn't drop back down to the hip between every letter.
       if (token.kind === "letter") {
         timeline.push({
-          right: { pos: add(ANCHOR_R, [0, -0.02, 0]), shape: REST_SHAPE },
+          right: {
+            pos: add(ANCHOR_R, [FINGERSPELL_POS[0], FINGERSPELL_POS[1] - 0.03, FINGERSPELL_POS[2]]),
+            shape: REST_SHAPE,
+          },
           left: restHand("left"),
           hold: 90,
           tokenIndex,
