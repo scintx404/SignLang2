@@ -751,10 +751,6 @@
     aspect-ratio: 16 / 10;
   }
 
-  .aspect-\[16\/13\] {
-    aspect-ratio: 16 / 13;
-  }
-
   .size-2 {
     width: calc(var(--spacing) * 2);
     height: calc(var(--spacing) * 2);
@@ -835,11 +831,6 @@
     height: 66px;
   }
 
-  .size-\[92px\] {
-    width: 92px;
-    height: 92px;
-  }
-
   .h-\[1\.1em\] {
     height: 1.1em;
   }
@@ -870,10 +861,6 @@
 
   .min-h-\[520px\] {
     min-height: 520px;
-  }
-
-  .w-2\/3 {
-    width: 66.6667%;
   }
 
   .w-\[3px\] {
@@ -914,10 +901,6 @@
 
   .max-w-\[210px\] {
     max-width: 210px;
-  }
-
-  .max-w-\[240px\] {
-    max-width: 240px;
   }
 
   .max-w-\[360px\] {
@@ -1062,10 +1045,6 @@
     gap: 22px;
   }
 
-  .gap-\[clamp\(28px\,5vw\,56px\)\] {
-    gap: clamp(28px, 5vw, 56px);
-  }
-
   .gap-x-6 {
     column-gap: calc(var(--spacing) * 6);
   }
@@ -1132,10 +1111,6 @@
     border-radius: 20px;
   }
 
-  .rounded-\[26px\] {
-    border-radius: 26px;
-  }
-
   .rounded-full {
     border-radius: 3.40282e38px;
   }
@@ -1189,17 +1164,17 @@
 
   .border-line {
     border-color: #e4dfd9;
-    border-color: lab(88.9806% 1.13374 3.20199);
+    border-color: lab(88.9805% 1.13377 3.20197);
   }
 
   .border-line-soft {
     border-color: #ede9e5;
-    border-color: lab(92.4607% .876963 2.48744);
+    border-color: lab(92.4607% .877023 2.48742);
   }
 
   .border-stage-txt\/30 {
     border-color: #d6d6e54d;
-    border-color: lab(85.9053% 1.93471 -7.26657 / .3);
+    border-color: lab(85.9053% 1.93471 -7.26658 / .3);
   }
 
   .border-transparent {
@@ -1208,7 +1183,7 @@
 
   .border-t-stage-txt {
     border-top-color: #d6d6e5;
-    border-top-color: lab(85.9053% 1.93477 -7.26661);
+    border-top-color: lab(85.9053% 1.93474 -7.26659);
   }
 
   .bg-\[oklch\(18\%_0\.02_285_\/_0\.55\)\] {
@@ -1238,7 +1213,7 @@
 
   .bg-coral-wash {
     background-color: #ffe4db;
-    background-color: lab(92.7455% 11.8449 11.341);
+    background-color: lab(92.7455% 11.845 11.3409);
   }
 
   .bg-ink {
@@ -1248,7 +1223,7 @@
 
   .bg-ink-faint {
     background-color: #877e77;
-    background-color: lab(53.5699% 2.58049 5.02837);
+    background-color: lab(53.5699% 2.58046 5.02839);
   }
 
   .bg-paper {
@@ -1258,17 +1233,17 @@
 
   .bg-stage {
     background-color: #171625;
-    background-color: lab(8.06118% 3.46993 -9.85142);
+    background-color: lab(8.06118% 3.46994 -9.85142);
   }
 
   .bg-surface {
     background-color: #fefcfa;
-    background-color: lab(99.0745% .453174 1.43764);
+    background-color: lab(99.0745% .453144 1.43765);
   }
 
   .bg-surface-2 {
     background-color: #f6f2ed;
-    background-color: lab(95.5965% .915885 2.88138);
+    background-color: lab(95.5965% .915885 2.88137);
   }
 
   .p-1 {
@@ -1718,7 +1693,7 @@
 
   .text-\[oklch\(74\%_0\.02_285\)\] {
     color: #a9a9b7;
-    color: lab(69.6639% 1.95533 -7.25467);
+    color: lab(69.6639% 1.95536 -7.25468);
   }
 
   .text-coral {
@@ -1738,12 +1713,12 @@
 
   .text-ink-faint {
     color: #877e77;
-    color: lab(53.5699% 2.58049 5.02837);
+    color: lab(53.5699% 2.58046 5.02839);
   }
 
   .text-ink-soft {
     color: #5b5048;
-    color: lab(34.9859% 3.73325 6.63934);
+    color: lab(34.9859% 3.73323 6.63935);
   }
 
   .text-ok {
@@ -1758,22 +1733,22 @@
 
   .text-stage-txt {
     color: #d6d6e5;
-    color: lab(85.9053% 1.93477 -7.26661);
+    color: lab(85.9053% 1.93474 -7.26659);
   }
 
   .text-stage-txt\/45 {
     color: #d6d6e573;
-    color: lab(85.9053% 1.93477 -7.26661 / .45);
+    color: lab(85.9053% 1.93474 -7.26659 / .45);
   }
 
   .text-stage-txt\/70 {
     color: #d6d6e5b3;
-    color: lab(85.9053% 1.93477 -7.26661 / .7);
+    color: lab(85.9053% 1.93474 -7.26659 / .7);
   }
 
   .text-surface {
     color: #fefcfa;
-    color: lab(99.0745% .453174 1.43764);
+    color: lab(99.0745% .453144 1.43765);
   }
 
   .text-white {
@@ -1817,13 +1792,13 @@
 
   @supports (color: lab(0% 0 0)) {
     .shadow-stage {
-      --tw-shadow-color: lab(8.06118% 3.46993 -9.85142);
+      --tw-shadow-color: lab(8.06118% 3.46994 -9.85142);
     }
   }
 
   @supports (color: color-mix(in lab, red, red)) {
     .shadow-stage {
-      --tw-shadow-color: color-mix(in oklab, lab(8.06118% 3.46993 -9.85142) var(--tw-shadow-alpha), transparent);
+      --tw-shadow-color: color-mix(in oklab, lab(8.06118% 3.46994 -9.85142) var(--tw-shadow-alpha), transparent);
     }
   }
 
@@ -1891,7 +1866,7 @@
 
   .placeholder\:text-ink-faint::placeholder {
     color: #877e77;
-    color: lab(53.5699% 2.58049 5.02837);
+    color: lab(53.5699% 2.58046 5.02839);
   }
 
   @media (hover: hover) {
@@ -1921,22 +1896,22 @@
 
     .hover\:bg-coral-wash:hover {
       background-color: #ffe4db;
-      background-color: lab(92.7455% 11.8449 11.341);
+      background-color: lab(92.7455% 11.845 11.3409);
     }
 
     .hover\:bg-ink-soft:hover {
       background-color: #5b5048;
-      background-color: lab(34.9859% 3.73325 6.63934);
+      background-color: lab(34.9859% 3.73323 6.63935);
     }
 
     .hover\:bg-line-soft:hover {
       background-color: #ede9e5;
-      background-color: lab(92.4607% .876963 2.48744);
+      background-color: lab(92.4607% .877023 2.48742);
     }
 
     .hover\:bg-surface-2:hover {
       background-color: #f6f2ed;
-      background-color: lab(95.5965% .915885 2.88138);
+      background-color: lab(95.5965% .915885 2.88137);
     }
 
     .hover\:text-coral-deep:hover {
@@ -1991,10 +1966,6 @@
       top: 22px;
     }
 
-    .lg\:grid-cols-\[minmax\(0\,1\.05fr\)_minmax\(320px\,1fr\)\] {
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 1fr);
-    }
-
     .lg\:grid-cols-\[minmax\(0\,1\.5fr\)_minmax\(340px\,1fr\)\] {
       grid-template-columns: minmax(0, 1.5fr) minmax(340px, 1fr);
     }
@@ -2008,8 +1979,8 @@
 
 @supports (color: lab(0% 0 0)) {
   :root {
-    --shadow-soft: 0 1px 2px lab(18.7497% 3.6341 6.86861 / .04), 0 8px 26px lab(18.7497% 3.6341 6.86861 / .06);
-    --shadow-lg: 0 2px 4px lab(18.7497% 3.6341 6.86861 / .05), 0 24px 60px lab(18.7497% 3.6341 6.86861 / .12);
+    --shadow-soft: 0 1px 2px lab(18.7497% 3.63408 6.86861 / .04), 0 8px 26px lab(18.7497% 3.63408 6.86861 / .06);
+    --shadow-lg: 0 2px 4px lab(18.7497% 3.63408 6.86861 / .05), 0 24px 60px lab(18.7497% 3.63408 6.86861 / .12);
   }
 }
 

@@ -626,23 +626,27 @@ const LETTER_SHAPES = {
     }, {
         thumbSide: 0.3
     }),
+    // Index points straight up; middle/ring/pinky curl so their tips meet the
+    // thumb tip, forming a round "O" with the index extended above it.
     D: shape({
-        thumb: 0.55,
+        thumb: 0.5,
         index: OPEN,
-        middle: 0.85,
-        ring: 0.9,
-        pinky: 0.9
+        middle: 0.6,
+        ring: 0.62,
+        pinky: 0.62
     }, {
-        thumbSide: 0.1
+        thumbSide: 0.35
     }),
+    // Fingertips curl down to press against the front of the thumb, thumb
+    // tucked in under the fingers.
     E: shape({
-        thumb: 0.8,
-        index: 0.8,
-        middle: 0.8,
-        ring: 0.8,
-        pinky: 0.8
+        thumb: 0.85,
+        index: 0.85,
+        middle: 0.85,
+        ring: 0.85,
+        pinky: 0.85
     }, {
-        thumbSide: -0.4
+        thumbSide: -0.5
     }),
     F: shape({
         thumb: 0.6,
@@ -654,14 +658,15 @@ const LETTER_SHAPES = {
         thumbSide: 0.2,
         spread: 0.4
     }),
+    // Index points to the side, thumb held parallel just below it (small gap).
     G: shape({
-        thumb: 0.5,
+        thumb: 0.3,
         index: OPEN,
         middle: CLOSED,
         ring: CLOSED,
         pinky: CLOSED
     }, {
-        thumbSide: 0.3,
+        thumbSide: 0.5,
         wrist: [
             0,
             0,
@@ -691,15 +696,17 @@ const LETTER_SHAPES = {
     }, {
         thumbSide: -0.2
     }),
+    // Index up, middle out at an angle, thumb tucked in at the base between
+    // them (pointing up toward the middle finger, not flared out to the side).
     K: shape({
-        thumb: 0.2,
+        thumb: 0.25,
         index: OPEN,
         middle: OPEN,
         ring: CLOSED,
         pinky: CLOSED
     }, {
-        thumbSide: 0.4,
-        spread: 0.5
+        thumbSide: 0.2,
+        spread: 0.55
     }),
     L: shape({
         thumb: OPEN,
@@ -737,6 +744,7 @@ const LETTER_SHAPES = {
     }, {
         thumbSide: 0.35
     }),
+    // K shape rotated to point downward: index forward, middle down, thumb between.
     P: shape({
         thumb: 0.2,
         index: OPEN,
@@ -744,8 +752,8 @@ const LETTER_SHAPES = {
         ring: CLOSED,
         pinky: CLOSED
     }, {
-        thumbSide: 0.4,
-        spread: 0.5,
+        thumbSide: 0.2,
+        spread: 0.55,
         wrist: [
             90,
             0,
@@ -785,14 +793,15 @@ const LETTER_SHAPES = {
     }, {
         thumbSide: -0.5
     }),
+    // Thumb tucked between the index and middle fingers; index curls over it.
     T: shape({
-        thumb: 0.6,
-        index: 0.6,
+        thumb: 0.65,
+        index: 0.75,
         middle: CLOSED,
         ring: CLOSED,
         pinky: CLOSED
     }, {
-        thumbSide: -0.5
+        thumbSide: -0.3
     }),
     U: shape({
         thumb: 0.8,
@@ -1272,6 +1281,16 @@ const CLAW = shape({
     spread: 0.4,
     thumbSide: 0.3
 });
+const A_HAND = shape({
+    thumb: 0.2,
+    index: 1,
+    middle: 1,
+    ring: 1,
+    pinky: 1
+}, {
+    thumbSide: 0.15
+}) // closed fist, thumb up alongside
+;
 // A curated set of common ASL signs approximated as keyframe sequences.
 // Movements are expressed as hand-root offsets; shapes reuse the presets above.
 const WORDS = {
@@ -1472,6 +1491,7 @@ const WORDS = {
             }
         ]
     },
+    // Flat open hand on the chest, rubbed in a circular motion.
     PLEASE: {
         gloss: "PLEASE",
         frames: [
@@ -1479,11 +1499,11 @@ const WORDS = {
                 right: FLAT,
                 rightPos: [
                     0,
-                    0.02,
+                    0.1,
                     0.12
                 ],
                 wrist: undefined,
-                hold: 200
+                hold: 130
             },
             {
                 right: FLAT,
@@ -1492,16 +1512,34 @@ const WORDS = {
                     0.06,
                     0.12
                 ],
-                hold: 220
+                hold: 130
             },
             {
                 right: FLAT,
                 rightPos: [
-                    -0.02,
                     0,
+                    0.02,
                     0.12
                 ],
-                hold: 220
+                hold: 130
+            },
+            {
+                right: FLAT,
+                rightPos: [
+                    -0.06,
+                    0.06,
+                    0.12
+                ],
+                hold: 130
+            },
+            {
+                right: FLAT,
+                rightPos: [
+                    0,
+                    0.1,
+                    0.12
+                ],
+                hold: 150
             }
         ]
     },
@@ -1571,59 +1609,54 @@ const WORDS = {
             }
         ]
     },
+    // "A" handshape (fist, thumb up alongside) rubbed on the chest in a circle.
     SORRY: {
         gloss: "SORRY",
         frames: [
             {
-                right: shape({
-                    thumb: 0.5,
-                    index: 1,
-                    middle: 1,
-                    ring: 1,
-                    pinky: 1
-                }, {
-                    thumbSide: -0.3
-                }),
+                right: A_HAND,
                 rightPos: [
                     0,
-                    0.05,
+                    0.12,
                     0.14
                 ],
-                hold: 200
+                hold: 140
             },
             {
-                right: shape({
-                    thumb: 0.5,
-                    index: 1,
-                    middle: 1,
-                    ring: 1,
-                    pinky: 1
-                }, {
-                    thumbSide: -0.3
-                }),
+                right: A_HAND,
                 rightPos: [
-                    0.05,
+                    0.06,
                     0.08,
                     0.14
                 ],
-                hold: 200
+                hold: 140
             },
             {
-                right: shape({
-                    thumb: 0.5,
-                    index: 1,
-                    middle: 1,
-                    ring: 1,
-                    pinky: 1
-                }, {
-                    thumbSide: -0.3
-                }),
+                right: A_HAND,
                 rightPos: [
-                    -0.02,
-                    0.03,
+                    0,
+                    0.04,
                     0.14
                 ],
-                hold: 220
+                hold: 140
+            },
+            {
+                right: A_HAND,
+                rightPos: [
+                    -0.06,
+                    0.08,
+                    0.14
+                ],
+                hold: 140
+            },
+            {
+                right: A_HAND,
+                rightPos: [
+                    0,
+                    0.12,
+                    0.14
+                ],
+                hold: 160
             }
         ]
     },
